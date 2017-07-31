@@ -9,7 +9,7 @@ project(lsd_slam_viewer)
 #  MinSizeRel : w/o debug symbols, w/ optimization, stripped binaries
 set(CMAKE_BUILD_TYPE Release)
 
-ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/thirdparty/Sophus)
+# ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/thirdparty/Sophus)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 
@@ -23,12 +23,13 @@ find_package(catkin REQUIRED COMPONENTS
   roslib
 )
 
+find_package(Sophus REQUIRED)   
 find_package(cmake_modules REQUIRED)   
 find_package(OpenGL REQUIRED)
 set(QT_USE_QTOPENGL TRUE)
 set(QT_USE_QTXML TRUE)
 find_package(QGLViewer REQUIRED)
-find_package(Eigen REQUIRED)
+find_package(Eigen 3.0 REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread)
 
@@ -65,9 +66,9 @@ set(HEADER_FILES
   src/settings.h
 )
 
-include_directories(
-  ${PROJECT_SOURCE_DIR}/thirdparty/Sophus
-)  
+# include_directories(
+#   ${PROJECT_SOURCE_DIR}/thirdparty/Sophus
+# )  
 
 add_executable(viewer src/main_viewer.cpp ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(viewer ${QGLViewer_LIBRARIES}
@@ -77,6 +78,7 @@ target_link_libraries(viewer ${QGLViewer_LIBRARIES}
 			     ${QT_LIBRARIES}
 			     GL glut GLU
 		     )
+add_dependencies(viewer lsd_slam_viewer_generate_messages_cpp)
 
 #add_executable(videoStitch src/main_stitchVideos.cpp)
 #target_link_libraries(viewer ${QGLViewer_LIBRARIES}
