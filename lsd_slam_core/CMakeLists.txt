@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   rosbag
 )
 
+find_package(cmake_modules REQUIRED)   
 find_package(Eigen REQUIRED)
 find_package(X11 REQUIRED)
 include(cmake/FindG2O.cmake)
@@ -97,7 +98,7 @@ include_directories(
 
 # build shared library.
 add_library(lsdslam SHARED ${SOURCE_FILES})
-target_link_libraries(lsdslam ${FABMAP_LIB} ${G2O_LIBRARIES} ${catkin_LIBRARIES} csparse cxsparse )
+target_link_libraries(lsdslam ${FABMAP_LIB} ${G2O_LIBRARIES} ${catkin_LIBRARIES} csparse cxsparse X11) 
 #rosbuild_link_boost(lsdslam thread)
 
 

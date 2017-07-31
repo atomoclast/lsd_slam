@@ -23,6 +23,7 @@ find_package(catkin REQUIRED COMPONENTS
   roslib
 )
 
+find_package(cmake_modules REQUIRED)   
 find_package(OpenGL REQUIRED)
 set(QT_USE_QTOPENGL TRUE)
 set(QT_USE_QTXML TRUE)
