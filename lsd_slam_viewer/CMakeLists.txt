@@ -76,6 +76,7 @@ target_link_libraries(viewer ${QGLViewer_LIBRARIES}
 			     ${catkin_LIBRARIES}
 			     ${Boost_LIBRARIES}
 			     ${QT_LIBRARIES}
+           ${OPENCV_LIB}
 			     GL glut GLU
 		     )
 add_dependencies(viewer lsd_slam_viewer_generate_messages_cpp)
